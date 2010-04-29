@@ -21,7 +21,7 @@ int sieve(int n) {
     LOG.debugf("sieve limit=%d", limit);
     int prime = 0;
     int cnt = 0;
-    vector<int> naturals(limit+1, 1);
+    vector<char> naturals(limit+1, 1);
     for (int i = 2; i <= limit; i++) {
         if (naturals[i] == 0) {
             continue;
