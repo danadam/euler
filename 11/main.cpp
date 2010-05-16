@@ -38,8 +38,20 @@ int main() {
 
     // horizontally
     for (int y = 0; y < A; y++) {
+        int prev = 0;
         for (int x = 0; x < A - 4; x++) {
-            int product = get(x, y) * get(x+1, y) * get(x+2, y) * get(x+3, y);
+            int last = get(x+3, y);
+            if (last == 0) {
+                x += 3;
+                prev = 0;
+                continue;
+            }
+            if (last < prev) {
+                prev = 0;
+                continue;
+            }
+            prev = get(x, y);
+            int product = prev * get(x+1, y) * get(x+2, y) * last;
             cnt++;
             if (product > max) {
                 max = product;
@@ -51,8 +63,20 @@ int main() {
 
     // vertically
     for (int x = 0; x < A; x++) {
+        int prev = 0;
         for (int y = 0; y < A - 4; y++) {
-            int product = get(x, y) * get(x, y+1) * get(x, y+2) * get(x, y+3);
+            int last = get(x, y+3);
+            if (last == 0) {
+                y += 3;
+                prev = 0;
+                continue;
+            }
+            if (last < prev) {
+                prev = 0;
+                continue;
+            }
+            prev = get(x, y);
+            int product = prev * get(x, y+1) * get(x, y+2) * last;
             cnt++;
             if (product > max) {
                 max = product;
@@ -65,10 +89,22 @@ int main() {
     // \ lower
     for (int d = A - 4; d > 0; d--) {
         int len = A - d;
+        int prev = 0;
         for (int p = 0; p < len - 4; p++) {
             int x = p;
             int y = p + d;
-            int product = get(x, y) * get(x+1, y+1) * get(x+2, y+2) * get(x+3, y+3);
+            int last = get(x+3, y+3);
+            if (last == 0) {
+                p += 3;
+                prev = 0;
+                continue;
+            }
+            if (last < prev) {
+                prev = 0;
+                continue;
+            }
+            prev = get(x, y);
+            int product = prev * get(x+1, y+1) * get(x+2, y+2) * last;
             cnt++;
             if (product > max) {
                 max = product;
@@ -81,10 +117,22 @@ int main() {
     // \ upper
     for (int d = 0; d <= A - 4; d++) {
         int len = A - d;
+        int prev = 0;
         for (int p = 0; p < len - 4; p++) {
             int x = p + d;
             int y = p;
-            int product = get(x, y) * get(x+1, y+1) * get(x+2, y+2) * get(x+3, y+3);
+            int last = get(x+3, y+3);
+            if (last == 0) {
+                p += 3;
+                prev = 0;
+                continue;
+            }
+            if (last < prev) {
+                prev = 0;
+                continue;
+            }
+            prev = get(x, y);
+            int product = prev * get(x+1, y+1) * get(x+2, y+2) * last;
             cnt++;
             if (product > max) {
                 max = product;
@@ -97,10 +145,22 @@ int main() {
     // / upper
     for (int d = A - 4; d > 0; d--) {
         int len = A - d;
+        int prev = 0;
         for (int p = 0; p < len - 4; p++) {
             int x = p;
             int y = (A - 1 - d) - p;
-            int product = get(x, y) * get(x+1, y-1) * get(x+2, y-2) * get(x+3, y-3);
+            int last = get(x+3, y-3);
+            if (last == 0) {
+                p += 3;
+                prev = 0;
+                continue;
+            }
+            if (last < prev) {
+                prev = 0;
+                continue;
+            }
+            prev = get(x, y);
+            int product = prev * get(x+1, y-1) * get(x+2, y-2) * last;
             cnt++;
             if (product > max) {
                 max = product;
@@ -113,10 +173,22 @@ int main() {
     // / lower
     for (int d = 0; d <= A - 4; d++) {
         int len = A - d;
+        int prev = 0;
         for (int p = 0; p < len - 4; p++) {
             int x = p + d;
             int y = (A - 1) - p;
-            int product = get(x, y) * get(x+1, y-1) * get(x+2, y-2) * get(x+3, y-3);
+            int last = get(x+3, y-3);
+            if (last == 0) {
+                p += 3;
+                prev = 0;
+                continue;
+            }
+            if (last < prev) {
+                prev = 0;
+                continue;
+            }
+            prev = get(x, y);
+            int product = prev * get(x+1, y-1) * get(x+2, y-2) * last;
             cnt++;
             if (product > max) {
                 max = product;
